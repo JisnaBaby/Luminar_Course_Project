@@ -1,0 +1,110 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+  	<title>Sign up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'reg/css/style.css' %}">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url({% static 'reg/images/chat3.jpg' %});">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Zynk</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Register Here..</h3>
+		      	<form action="{% url 'admin_reg_save' %}" class="signin-form" method="post">
+					{% csrf_token %}
+		      		<div class="form-group">
+		      			<input type="text" class="form-control" placeholder="Email Id" name="reg_mail" required>
+
+		      		</div>
+
+	           <div class="form-group">
+    <input id="password-field" type="password" class="form-control" placeholder="Password" name="reg_pass" required>
+    <span class="fa fa-fw fa-eye field-icon toggle-password"></span>
+</div>
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+	            </div>
+	            <div class="form-group d-md-flex">
+	            	<div class="w-50">
+<!--		            	<label class="checkbox-wrap checkbox-primary">Remember Me-->
+<!--									  <input type="checkbox" checked>-->
+<!--									  <span class="checkmark"></span>-->
+<!--									</label>-->
+								</div>
+								<div class="w-50 text-md-right">
+<!--									<a href="#" style="color: #fff">Forgot Password</a>-->
+								</div>
+	            </div>
+	          </form>
+<!--	          <p class="w-100 text-center">&mdash;Don't you have an account&mdash;</p>-->
+	          <div class="form-group">
+<!--	            	<a type="submit" href="#" class="form-control btn btn-primary px-3">Sign In</a>-->
+	            </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            var passwordField = document.querySelector('#password-field');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                this.classList.remove('fa-eye');
+                this.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                this.classList.remove('fa-eye-slash');
+                this.classList.add('fa-eye');
+            }
+        });
+    });
+</script>
+
+	<script src="{% static 'reg/js/jquery.min.js' %}"></script>
+  <script src="{% static 'reg/js/popper.js' %}"></script>
+  <script src="{% static 'reg/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'reg/js/main.js' %}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+          {% for i in messages %}
+               {% if i.tags == 'success' %}
+                   <script>
+                       swal('{{i}}','','success');
+                   </script>
+               {% elif i.tags == 'error' %}
+                   <script>
+                       swal('{{i}}','','error');
+                   </script>
+               {% elif i.tags == 'warnings' %}
+                   <script>
+                       swal('{{i}}','','warnings');
+                   </script>
+               {% else %}
+                   <script>
+                       swal('{{i}}','','info');
+                   </script>
+               {% endif %}
+          {% endfor %}
+      {% endif %}
+
+
+	</body>
+</html>
+

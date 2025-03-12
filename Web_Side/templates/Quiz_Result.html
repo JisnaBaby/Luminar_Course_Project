@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Result</title>
+</head>
+<body>
+
+<div style="text-align:center">
+    <h3>Thank you, {{ participant.name }}!</h3>
+<p>Your Quiz Score: {{ score }}</p>
+<p>Percentage: {{ percentage|floatformat:2 }}%</p>
+
+{% if percentage > 40 %}
+    <p>Congratulations! You have passed the test.</p>
+    <a href="{% url 'generate_certificate' participant.id %}">
+        <button>Download Certificate</button>
+    </a>
+{% else %}
+    <p>Unfortunately, you did not pass. Please try again.</p>
+    <a href="{% url 'quiz_form' participant.id %}">
+        <button>Retake Test</button>
+    </a>
+{% endif %}
+    <br><a href="{% url 'profile_page' %}" class="btn btn-outline-primary">Home</a>
+</div>
+
+</body>
+</html>

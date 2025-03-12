@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+
+        /* Certificate container in landscape A4 size */
+        .certificate-container {
+            width: 1123px;  /* A4 landscape width */
+            height: 794px;  /* A4 landscape height */
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Outer Border */
+        .certificate-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 20px solid transparent;
+            border-image: linear-gradient(135deg, #00ff87, #0066ff) 1;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        /* Gradient effect on MetaGaze */
+        .company-name {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00ff87, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .published-by {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .presented-to {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .name {
+            font-size: 28px;
+            color: #0066cc;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .description {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .score {
+            font-size: 22px;
+            color: #0066cc;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .date {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 40px;
+        }
+
+        .signature {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .signature-line {
+            width: 180px;
+            height: 2px;
+            background: #000;
+            margin: 20px auto 5px auto;
+        }
+
+        .signature-name {
+            font-weight: bold;
+        }
+
+        .signature-title {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="company-name">Zynk</div>
+        <div class="header">Certificate of Completion <br> Bullying Course</div>
+        <div class="published-by">Published by Zynk</div>
+
+        <div class="presented-to">Presented to</div>
+        <div class="name">{{ participant.name }}</div>
+
+        <div class="description">For successfully completing the quiz with a score of</div>
+        <div class="score">{{ score }} out of 90</div>
+
+        <div class="date">Issued on: {% now "F j, Y" %}</div>
+
+        <div class="signatures">
+            <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-name">Dr. John Doe</div>
+                <div class="signature-title">Project Manager Head</div>
+            </div>
+            <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-name">Dr. Christin Frause</div>
+                <div class="signature-title">Dept Head of Psychology</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

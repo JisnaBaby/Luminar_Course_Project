@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+     <title>Zynk India's No.1 Chat App</title>
+    <link rel="icon" href="{% static 'home/images/zynk_icon.png' %}" type="image/png">
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/animate.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/owl.carousel.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/owl.theme.default.min.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
+     <link rel="stylesheet" href="{% static 'home/css/templatemo-style.css' %}">
+
+</head>
+<body>
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+<!--                    <img src="{% static 'home/images/zynk_icon.png' %}" class="logo-icon" alt="logo icon" width="20px" height="20px">-->
+                    <a href="#" class="navbar-brand">Zynk</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#home" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">About</a></li>
+                         <li><a href="#team" class="smoothScroll">Reviews</a></li>
+                         <li><a href="#menu" class="smoothScroll">Team</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+<!--                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 010 020 0340</a></li>-->
+                         <a href="{% url 'user_login_page' %}" class="section-btn">Login</a>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+          <div class="row">
+
+                    <div class="owl-carousel owl-theme">
+                         <div class="item item-first">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-8 col-sm-12">
+                                             <h3>Your Perfect ChatApp</h3>
+                                             <h1>Your journey to effortless communication starts here..</h1>
+                                             <a href="{% url 'user_login_page' %}" class="section-btn btn btn-default smoothScroll">Login</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="item item-second">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-8 col-sm-12">
+                                             <h3>The world is just a message away</h3>
+                                             <h1>Join the chat revolution—download Zynk today!</h1>
+                                             <a href="{% url 'reg_page' %}" class="section-btn btn btn-default smoothScroll">Register</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="item item-third">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-8 col-sm-12">
+                                             <h3>Chat smarter, connect deeper</h3>
+                                             <h1>Real users, real connections, real experiences.</h1>
+                                             <a href="#contact" class="section-btn btn btn-default smoothScroll">Contact Us</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+          </div>
+     </section>
+
+
+     <!-- ABOUT -->
+     <section id="about" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="about-info">
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                                   <h4>Read our story</h4>
+                                   <h2>"Connecting Hearts, One Chat at a Time Since 2024"</h2>
+                              </div>
+
+                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>
+
+                                        In a world that often feels disconnected, we envisioned a space where conversations flow seamlessly and connections thrive. That vision became Zynk, a platform built to bring people closer, no matter how far apart they may be.</p>
+
+                                   <p>From the very beginning, our mission has been clear: to create a chat app that is simple, secure, and effortlessly powerful. With every message sent, every bond strengthened, and every idea shared, Zynk evolves—growing alongside the communities it serves.</p>
+
+<p>At Zynk, innovation meets intuition. Whether you’re sharing laughter with friends, collaborating with colleagues, or simply staying in touch with loved ones, we’re here to ensure your conversations are as dynamic as you are.</p>
+
+Join us on this journey. Together, let’s keep the world talking.</p>
+<!--                                   <p>Sed elementum vel felis sed scelerisque. In arcu diam, sollicitudin eu nibh ac, posuere tristique magna. You can use this template for your cafe or restaurant website. Please tell your friends about . Thank you.</p>-->
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
+                              <img src="{% static 'home/images/Msg.png' %}" class="img-responsive" alt="">
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TEAM -->
+     <section id="team" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2>Customer Reviews</h2>
+<!--                              <h4>They are nice &amp; friendly</h4>-->
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                              <img src="{% static 'home/images/Cust_re1.png' %}" class="img-responsive" alt="">
+<!--                                   <div class="team-hover">-->
+<!--                                        <div class="team-item">-->
+<!--                                             <h4>Duis vel lacus id magna mattis vehicula</h4>-->
+<!--                                             <ul class="social-icon">-->
+<!--                                                  <li><a href="#" class="fa fa-linkedin-square"></a></li>-->
+<!--                                                  <li><a href="#" class="fa fa-envelope-o"></a></li>-->
+<!--                                             </ul>-->
+<!--                                        </div>-->
+<!--                                   </div>-->
+                         </div>
+                         <div class="team-info">
+<!--                              <h3>New Catherine</h3>-->
+<!--                              <p>Kitchen Officer</p>-->
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
+                              <img src="{% static 'home/images/Cust_re2.png' %}" class="img-responsive" alt="">
+<!--                                   <div class="team-hover">-->
+<!--                                        <div class="team-item">-->
+<!--                                             <h4>Cras suscipit neque quis odio feugiat</h4>-->
+<!--                                             <ul class="social-icon">-->
+<!--                                                  <li><a href="#" class="fa fa-instagram"></a></li>-->
+<!--                                                  <li><a href="#" class="fa fa-flickr"></a></li>-->
+<!--                                             </ul>-->
+<!--                                        </div>-->
+<!--                                   </div>-->
+                         </div>
+                         <div class="team-info">
+<!--                              <h3>Lindsay Perlen</h3>-->
+<!--                              <p>Owner &amp; Manager</p>-->
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                              <img src="{% static 'home/images/Cust_re3.png' %}" class="img-responsive" alt="">
+<!--                                   <div class="team-hover">-->
+<!--                                        <div class="team-item">-->
+<!--                                             <h4>Etiam auctor enim tristique faucibus</h4>-->
+<!--                                             <ul class="social-icon">-->
+<!--                                                  <li><a href="#" class="fa fa-github"></a></li>-->
+<!--                                                  <li><a href="#" class="fa fa-google"></a></li>-->
+<!--                                             </ul>-->
+<!--                                        </div>-->
+<!--                                   </div>-->
+                         </div>
+                         <div class="team-info">
+<!--                              <h3>Isabella Grace</h3>-->
+<!--                              <p>Pizza Specialist</p>-->
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- MENU-->
+     <section id="menu" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2>Our Team</h2>
+                              <h4>Our Strong Pillars</h4>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="{% static 'home/images/person_1.jpg' %}" class="image-popup" title="Rayan Philip">
+                                   <img src="{% static 'home/images/person_1.jpg' %}" cwidth="300px" height="300px" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Rayan Philip</h3>
+                                             <p>Chief Executive Officer(CEO)</p>
+                                        </div>
+                                        <div class="menu-price">
+<!--                                             <span>$25</span>-->
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="{% static 'home/images/person_2.jpg' %}" class="image-popup" title="William Taylor">
+                                   <img src="{% static 'home/images/person_2.jpg' %}" width="300px" height="300px" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>William Taylor</h3>
+                                             <p>Chief Operating Officer(COO)</p>
+                                        </div>
+                                        <div class="menu-price">
+<!--                                             <span>$18</span>-->
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="{% static 'home/images/person_3.jpg' %}" class="image-popup" title="Robert Johnson">
+                                   <img src="{% static 'home/images/person_3.jpg' %}" width="300px" height="300px" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Robert Johnson</h3>
+                                             <p>Chief Technology Officer(CTO)</p>
+                                        </div>
+                                        <div class="menu-price">
+<!--                                             <span>$34</span>-->
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="{% static 'home/images/person_4.jpg' %}" class="image-popup" title="Dwayne John">
+                                   <img src="{% static 'home/images/person_4.jpg' %}" width="300px" height="300px" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Dwayne John</h3>
+                                             <p>Chief Marketing Officer (CMO)</p>
+                                        </div>
+                                        <div class="menu-price">
+<!--                                             <span>$46</span>-->
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="{% static 'home/images/face6.jpg' %}" class="image-popup" title="Olivia Martinez">
+                                   <img src="{% static 'home/images/face6.jpg' %}" width="300px" height="300px" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Olivia Martinez</h3>
+                                             <p>Chief Human Resources Officer (CHRO)</p>
+                                        </div>
+                                        <div class="menu-price">
+<!--                                             <span>$46</span>-->
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a href="{% static 'home/images/face10.jpg' %}" class="image-popup" title="Charlotte Moore">
+                                   <img src="{% static 'home/images/face10.jpg' %}" width="300px" height="300px"  alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Charlotte Moore</h3>
+                                             <p>Chief Information Officer (CIO)</p>
+                                        </div>
+                                        <div class="menu-price">
+<!--                                             <span>$30</span>-->
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TESTIMONIAL -->
+     <section id="testimonial" data-stellar-background-ratio="0.5">
+    <div class="video-bg">
+        <video autoplay muted loop>
+            <source src="{% static 'home/video/chat1.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                    <h2>Testimonials</h2>
+                </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-8 col-sm-12">
+                <div class="owl-carousel owl-theme">
+                    <div class="item">
+                        <p>"At ChatApp, we’re redefining communication—seamless, secure, and designed to bring people closer. Together, let’s connect the world one message at a time."</p>
+                        <div class="tst-author">
+                            <h4>Rayan Philip</h4>
+                            <span>CEO</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <p>"Efficiency is the backbone of success, and at ChatApp, we ensure every process runs smoothly to deliver exceptional experiences."</p>
+                        <div class="tst-author">
+                            <h4>William Taylor</h4>
+                            <span>COO</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <p>"Innovation drives connection; at ChatApp, we leverage cutting-edge technology to create a platform that evolves with your needs."</p>
+                        <div class="tst-author">
+                            <h4>Robert Johnson</h4>
+                            <span>CTO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+     <!-- CONTACT -->
+     <section id="contact" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+	<!-- How to change your own map point
+            1. Go to Google Maps
+            2. Click on your location point
+            3. Click "Share" and choose "Embed map" tab
+            4. Copy only URL and paste it within the src="" field below
+	-->
+                    <div class="wow fadeInUp col-md-6 col-sm-12" data-wow-delay="0.4s">
+                         <div id="google-map">
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1961.6657592876315!2d76.3533174!3d10.0080343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080b62a7688a1d%3A0xea20f6a86d090450!2sInfopark%20Campus%2C%20Kochi%2C%20Kakkanad%2C%20Kerala%20682030!5e0!3m2!1sen!2sin!4v1510722015945" allowfullscreen></iframe>
+                         </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+
+                         <div class="col-md-12 col-sm-12">
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                                   <h2>Contact Us</h2>
+                              </div>
+                         </div>
+
+                         <!-- CONTACT FORM -->
+                         <form action="{% url 'save_contact' %}" method="post" class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
+                             {% csrf_token %}
+
+                              <!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
+                              <h6 class="text-success">Your message has been sent successfully.</h6>
+
+                              <!-- IF MAIL NOT SENT -->
+                              <h6 class="text-danger">E-mail must be valid and message must be longer than 1 character.</h6>
+
+                              <div class="col-md-6 col-sm-6">
+                                   <input type="text" class="form-control" id="cf-name" name="f_name" placeholder="Full name" >
+                              </div>
+
+                              <div class="col-md-6 col-sm-6">
+                                   <input type="text" class="form-control" id="" name="c_mob" placeholder="Mobile Number">
+                              </div>
+                             <div class="col-md-12 col-sm-12">
+                                   <input type="email" class="form-control" id="cf-email" name="c_mail" placeholder="Email address">
+                              </div>
+
+                              <div class="col-md-12 col-sm-12">
+                                   <input type="text" class="form-control" id="cf-subject" name="c_sub" placeholder="Subject">
+
+                                   <textarea class="form-control" rows="6" id="cf-message" name="c_msg" placeholder="Message"></textarea>
+
+                                   <button type="submit" class="form-control" id="cf-submit" name="submit">Send Message</button>
+                              </div>
+                         </form>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- FOOTER -->
+     <footer id="footer" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-3 col-sm-8">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Find us</h2>
+                              </div>
+                              <address class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>Zynk Technology<br> Infopark Phase II<br>Kakkanad Kochi India<br>683241</p>
+                              </address>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-8">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Reservation</h2>
+                              </div>
+                              <address class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>+91 9876543210 | +91 9123456780</p>
+                                   <p><a href="mailto:zynkinfo@company.com">zynkinfo@company.com</a></p>
+                                   <p>LINE: zynk467 </p>
+                              </address>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-8">
+                         <div class="footer-info footer-open-hour">
+                              <div class="section-title">
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
+                              </div>
+                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>Sunday: Closed</p>
+                                   <div>
+                                        <strong>Monday to Friday</strong>
+                                        <p>7:00 AM - 9:00 PM</p>
+                                   </div>
+                                   <div>
+                                        <strong>Saturday</strong>
+                                        <p>11:00 AM - 10:00 PM</p>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4">
+                         <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
+                              <li><a  class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                              <li><a class="fa fa-twitter"></a></li>
+                              <li><a  class="fa fa-instagram"></a></li>
+                              <li><a  class="fa fa-google"></a></li>
+                         </ul>
+
+                         <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
+                             <p><br>Copyright &copy; 2024 <br>Zynk Technology<br></p>
+
+
+<!--                              <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a>-->
+<!--                              <br><br>Distribution: <a href="http://themewagon.com" target="_parent">ThemeWagon</a></p>-->
+                             <a href="{% url 'admin_login_page' %}"><button type="submit" class="section-btn">Admin Login</button></a>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </footer>
+
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'home/js/jquery.js' %}"></script>
+     <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'home/js/jquery.stellar.min.js' %}"></script>
+     <script src="{% static 'home/js/wow.min.js' %}"></script>
+     <script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+     <script src="{% static 'home/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'home/js/custom.js' %}"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+          {% for i in messages %}
+               {% if i.tags == 'success' %}
+                   <script>
+                       swal('{{i}}','','success');
+                   </script>
+               {% elif i.tags == 'error' %}
+                   <script>
+                       swal('{{i}}','','error');
+                   </script>
+               {% elif i.tags == 'warnings' %}
+                   <script>
+                       swal('{{i}}','','warnings');
+                   </script>
+               {% else %}
+                   <script>
+                       swal('{{i}}','','info');
+                   </script>
+               {% endif %}
+          {% endfor %}
+      {% endif %}
+
+
+</body>
+</html>

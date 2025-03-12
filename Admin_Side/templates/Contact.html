@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+                <div class="card-body">
+                  <h4 class="card-title"> Complaint</h4>
+                  <p class="card-description">User Complaints
+<!--                    Add class <code>.table-dark</code>-->
+                  </p>
+                  <div class="table-responsive pt-3">
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>
+                            Sl no.
+                          </th>
+                          <th>
+                            Full name
+                          </th>
+
+                          <th>
+                            Email Address
+                          </th>
+                          <th>
+                            Mobile Number
+                          </th>
+                            <th>
+                            Subject
+                          </th>
+                            <th>
+                           Message
+                          </th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for d in data %}
+                        <tr>
+                          <td>
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                             {{d.Full_Name}}
+                          </td>
+                          <td>{{d.Email}}
+                          </td>
+                          <td>{{d.Mobile_Number}}
+
+                          </td>
+                            <td>{{d.Subject}}
+
+                          </td>
+
+
+                            <td>{{d.Msg}}</td>
+
+                        </tr>
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      {% if messages %}
+          {% for i in messages %}
+               {% if i.tags == 'success' %}
+                   <script>
+                       swal('{{i}}','','success');
+                   </script>
+               {% elif i.tags == 'error' %}
+                   <script>
+                       swal('{{i}}','','error');
+                   </script>
+               {% elif i.tags == 'warnings' %}
+                   <script>
+                       swal('{{i}}','','warnings');
+                   </script>
+               {% else %}
+                   <script>
+                       swal('{{i}}','','info');
+                   </script>
+               {% endif %}
+          {% endfor %}
+      {% endif %}
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Cyberbullying Awareness Quiz</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'course/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'course/assets/css/main.css' %}" rel="stylesheet">
+<body>
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Quiz Form</h1>
+
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'profile_page' %}" class="active">Home<br></a></li>
+<!--          <li><a href="about.html">About</a></li>-->
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+<!--      <a class="btn-getstarted" href="courses.html">Courses</a>-->
+
+    </div>
+  </header>
+<section style="padding: 20px; margin: 20px;">
+    <h4 style="text-align:center;color:red;font-weight:bold;">Cyberbullying Awareness Quiz</h4>
+    <form method="post" action="{% url 'submit_quiz' participant.id %}">
+    {% csrf_token %}
+
+        <p><strong>1. What is cyberbullying?</strong></p>
+        <input type="radio" name="q1" value="A"> A) A form of online harassment<br>
+        <input type="radio" name="q1" value="B"> B) A type of computer virus<br>
+        <input type="radio" name="q1" value="C"> C) A law against hacking<br>
+        <input type="radio" name="q1" value="D"> D) A way to protect personal data<br>
+
+        <p><strong>2. Why is cyberbullying more difficult to escape than traditional bullying?</strong></p>
+        <input type="radio" name="q2" value="A"> A) It is only physical<br>
+        <input type="radio" name="q2" value="B"> B) It can happen anytime and anywhere<br>
+        <input type="radio" name="q2" value="C"> C) It requires face-to-face interaction<br>
+        <input type="radio" name="q2" value="D"> D) It is easy to track perpetrators<br>
+
+        <p><strong>3. Which age group is most affected by cyberbullying?</strong></p>
+        <input type="radio" name="q3" value="A"> A) Elderly people<br>
+        <input type="radio" name="q3" value="B"> B) Teenagers and young adults<br>
+        <input type="radio" name="q3" value="C"> C) Middle-aged individuals<br>
+        <input type="radio" name="q3" value="D"> D) Infants<br>
+
+        <p><strong>4. Why do cyberbullies often remain unidentified?</strong></p>
+        <input type="radio" name="q4" value="A"> A) They use their real names<br>
+        <input type="radio" name="q4" value="B"> B) They leave clear evidence<br>
+        <input type="radio" name="q4" value="C"> C) They remain anonymous online<br>
+        <input type="radio" name="q4" value="D"> D) They post in public places<br>
+
+        <p><strong>5. What is the main purpose of educating people about cyberbullying?</strong></p>
+        <input type="radio" name="q5" value="A"> A) To increase internet usage<br>
+        <input type="radio" name="q5" value="B"> B) To help recognize and prevent cyberbullying<br>
+        <input type="radio" name="q5" value="C"> C) To allow more freedom of speech<br>
+        <input type="radio" name="q5" value="D"> D) To create more online platforms<br>
+
+        <p><strong>6. What is cyberstalking?</strong></p>
+        <input type="radio" name="q6" value="A"> A) A way to search for information<br>
+        <input type="radio" name="q6" value="B"> B) Constant monitoring and harassment online<br>
+        <input type="radio" name="q6" value="C"> C) A technique for gaining followers<br>
+        <input type="radio" name="q6" value="D"> D) A way to protect one's privacy<br>
+
+        <p><strong>7. How does trickery work in cyberbullying?</strong></p>
+        <input type="radio" name="q7" value="A"> A) By playing harmless pranks<br>
+        <input type="radio" name="q7" value="B"> B) By gaining a victim’s trust and then exposing their private information<br>
+        <input type="radio" name="q7" value="C"> C) By making anonymous donations<br>
+        <input type="radio" name="q7" value="D"> D) By ignoring cyberbullying incidents<br>
+
+        <p><strong>8. What is the goal of trolling?</strong></p>
+        <input type="radio" name="q8" value="A"> A) To provoke or upset someone online<br>
+        <input type="radio" name="q8" value="B"> B) To provide helpful information<br>
+        <input type="radio" name="q8" value="C"> C) To avoid online arguments<br>
+        <input type="radio" name="q8" value="D"> D) To create educational content<br>
+
+        <p><strong>9. What makes persistent cyberbullying dangerous?</strong></p>
+        <input type="radio" name="q9" value="A"> A) It happens only once<br>
+        <input type="radio" name="q9" value="B"> B) It continues over a long period<br>
+        <input type="radio" name="q9" value="C"> C) It is always reported immediately<br>
+        <input type="radio" name="q9" value="D"> D) It is only verbal<br>
+
+        <p><strong>10. What is one major problem with permanent cyberbullying?</strong></p>
+        <input type="radio" name="q10" value="A"> A) It can be easily deleted<br>
+        <input type="radio" name="q10" value="B"> B) It is only visible to the victim<br>
+        <input type="radio" name="q10" value="C"> C) It can resurface even after being deleted<br>
+        <input type="radio" name="q10" value="D"> D) It does not affect people emotionally<br>
+
+        <p><strong>11. What factor contributes to cyberbullying?</strong></p>
+        <input type="radio" name="q11" value="A"> A) Strict internet regulations<br>
+        <input type="radio" name="q11" value="B"> B) Anonymity and lack of accountability<br>
+        <input type="radio" name="q11" value="C"> C) Limited online access<br>
+        <input type="radio" name="q11" value="D"> D) Face-to-face interaction<br>
+
+        <p><strong>12. What should you do if you are being cyberbullied?</strong></p>
+        <input type="radio" name="q12" value="A"> A) Respond aggressively<br>
+        <input type="radio" name="q12" value="B"> B) Block the bully and report the incident<br>
+        <input type="radio" name="q12" value="C"> C) Ignore it completely and never tell anyone<br>
+        <input type="radio" name="q12" value="D"> D) Retaliate by bullying back<br>
+
+        <p><strong>13. What is the first step in stopping cyberbullying?</strong></p>
+        <input type="radio" name="q13" value="A"> A) Keeping silent about it<br>
+        <input type="radio" name="q13" value="B"> B) Reporting it to a trusted person or authority<br>
+        <input type="radio" name="q13" value="C"> C) Responding with similar attacks<br>
+        <input type="radio" name="q13" value="D"> D) Deleting your social media accounts<br>
+
+        <p><strong>14. Which of the following is NOT a form of cyberbullying?</strong></p>
+        <input type="radio" name="q14" value="A"> A) Spreading false rumors online<br>
+        <input type="radio" name="q14" value="B"> B) Posting embarrassing pictures without consent<br>
+        <input type="radio" name="q14" value="C"> C) Sending kind and encouraging messages<br>
+        <input type="radio" name="q14" value="D"> D) Creating fake profiles to impersonate someone<br>
+
+        <p><strong>15. How can cyberbullying impact victims?</strong></p>
+        <input type="radio" name="q15" value="A"> A) It has no real effect on them<br>
+        <input type="radio" name="q15" value="B"> B) It can lead to anxiety, depression, or low self-esteem<br>
+        <input type="radio" name="q15" value="C"> C) It makes them stronger and more confident<br>
+        <input type="radio" name="q15" value="D"> D) It only affects their school grades<br>
+
+        <p><strong>16. How can parents help prevent cyberbullying?</strong></p>
+        <input type="radio" name="q16" value="A"> A) By monitoring their child’s online activity and teaching them safe practices<br>
+        <input type="radio" name="q16" value="B"> B) By encouraging them to bully others online<br>
+        <input type="radio" name="q16" value="C"> C) By staying offline completely<br>
+        <input type="radio" name="q16" value="D"> D) By ignoring online issues<br>
+
+        <p><strong>17. What does "blocking" a cyberbully do?</strong></p>
+        <input type="radio" name="q17" value="A"> A) Prevents them from contacting or messaging you<br>
+        <input type="radio" name="q17" value="B"> B) Deletes all their past messages<br>
+        <input type="radio" name="q17" value="C"> C) Reports them to the police automatically<br>
+        <input type="radio" name="q17" value="D"> D) Removes them from the internet permanently<br>
+
+        <p><strong>18. Which is the safest way to use social media?</strong></p>
+        <input type="radio" name="q18" value="A"> A) Keeping personal information private<br>
+        <input type="radio" name="q18" value="B"> B) Sharing passwords with friends<br>
+        <input type="radio" name="q18" value="C"> C) Accepting friend requests from strangers<br>
+        <input type="radio" name="q18" value="D"> D) Posting all daily activities online<br>
+
+        <p><strong>19. Which organization can help victims of cyberbullying?</strong></p>
+        <input type="radio" name="q19" value="A"> A) Local police and online safety organizations<br>
+        <input type="radio" name="q19" value="B"> B) Cyberbullies themselves<br>
+        <input type="radio" name="q19" value="C"> C) Social media influencers<br>
+        <input type="radio" name="q19" value="D"> D) Hackers<br>
+
+        <p><strong>20. What should you do if you see someone being cyberbullied?</strong></p>
+        <input type="radio" name="q20" value="A"> A) Stay silent and ignore it<br>
+        <input type="radio" name="q20" value="B"> B) Support the victim and report the bullying<br>
+        <input type="radio" name="q20" value="C"> C) Join in with the bully<br>
+        <input type="radio" name="q20" value="D"> D) Make fun of the victim privately<br>
+
+        <p><strong>21. How does cyberbullying differ from traditional bullying?</strong></p>
+        <input type="radio" name="q21" value="A"> A) It happens only in schools<br>
+        <input type="radio" name="q21" value="B"> B) It can happen 24/7 and reach a wider audience<br>
+        <input type="radio" name="q21" value="C"> C) It is always physical<br>
+        <input type="radio" name="q21" value="D"> D) It is easier to stop<br>
+
+        <p><strong>22. What is doxxing?</strong></p>
+        <input type="radio" name="q22" value="A"> A) The act of publicly sharing someone's private information online<br>
+        <input type="radio" name="q22" value="B"> B) Sending harmless jokes online<br>
+        <input type="radio" name="q22" value="C"> C) Making new online friends<br>
+        <input type="radio" name="q22" value="D"> D) Ignoring online bullying<br>
+
+        <p><strong>23. What is the best way to respond to an online bully?</strong></p>
+        <input type="radio" name="q23" value="A"> A) Engaging in arguments<br>
+        <input type="radio" name="q23" value="B"> B) Blocking and reporting them<br>
+        <input type="radio" name="q23" value="C"> C) Cyberbullying them back<br>
+        <input type="radio" name="q23" value="D"> D) Sharing their personal information online<br>
+
+        <p><strong>24. Why is it important to think before posting online?</strong></p>
+        <input type="radio" name="q24" value="A"> A) Because online posts can have lasting consequences<br>
+        <input type="radio" name="q24" value="B"> B) Because no one reads online posts<br>
+        <input type="radio" name="q24" value="C"> C) Because only friends can see them<br>
+        <input type="radio" name="q24" value="D"> D) Because posts automatically delete themselves<br>
+
+        <p><strong>25. What can schools do to prevent cyberbullying?</strong></p>
+        <input type="radio" name="q25" value="A"> A) Ignore it<br>
+        <input type="radio" name="q25" value="B"> B) Educate students and enforce anti-bullying policies<br>
+        <input type="radio" name="q25" value="C"> C) Encourage online fights<br>
+        <input type="radio" name="q25" value="D"> D) Ban social media completely<br>
+
+        <p><strong>26. What is the role of social media platforms in preventing cyberbullying?</strong></p>
+        <input type="radio" name="q26" value="A"> A) They have reporting tools to report cyberbullying<br>
+        <input type="radio" name="q26" value="B"> B) They do nothing to prevent cyberbullying<br>
+        <input type="radio" name="q26" value="C"> C) They encourage cyberbullying<br>
+        <input type="radio" name="q26" value="D"> D) They promote only positive comments<br>
+
+        <p><strong>27. Why is it dangerous to share personal information online?</strong></p>
+        <input type="radio" name="q27" value="A"> A) It can be used by cyberbullies or hackers<br>
+        <input type="radio" name="q27" value="B"> B) It helps make more friends online<br>
+        <input type="radio" name="q27" value="C"> C) It makes social media more fun<br>
+        <input type="radio" name="q27" value="D"> D) There is no danger in sharing personal details online<br>
+
+        <p><strong>28. What legal consequences can cyberbullies face?</strong></p>
+        <input type="radio" name="q28" value="A"> A) Fines, criminal charges, or imprisonment in serious cases<br>
+        <input type="radio" name="q28" value="B"> B) Nothing, since online bullying is not illegal<br>
+        <input type="radio" name="q28" value="C"> C) They only get a warning<br>
+        <input type="radio" name="q28" value="D"> D) They lose their social media account but face no legal action<br>
+
+        <p><strong>29. What should you do if a friend is engaging in cyberbullying?</strong></p>
+        <input type="radio" name="q29" value="A"> A) Confront them and encourage them to stop<br>
+        <input type="radio" name="q29" value="B"> B) Join in and help them bully others<br>
+        <input type="radio" name="q29" value="C"> C) Ignore it since they are your friend<br>
+        <input type="radio" name="q29" value="D"> D) Encourage them to continue<br>
+
+        <p><strong>30. What is the best way to promote a positive online environment?</strong></p>
+        <input type="radio" name="q30" value="A"> A) Posting kind and respectful messages<br>
+        <input type="radio" name="q30" value="B"> B) Criticizing people online<br>
+        <input type="radio" name="q30" value="C"> C) Spreading rumors and gossiping online<br>
+        <input type="radio" name="q30" value="D"> D) Ignoring negative comments and letting cyberbullying continue<br>
+
+        <br>
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+</section>
+
+<script src="{% static 'course/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'course/assets/js/main.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+          {% for i in messages %}
+               {% if i.tags == 'success' %}
+                   <script>
+                       swal('{{i}}','','success');
+                   </script>
+               {% elif i.tags == 'error' %}
+                   <script>
+                       swal('{{i}}','','error');
+                   </script>
+               {% elif i.tags == 'warnings' %}
+                   <script>
+                       swal('{{i}}','','warnings');
+                   </script>
+               {% else %}
+                   <script>
+                       swal('{{i}}','','info');
+                   </script>
+               {% endif %}
+          {% endfor %}
+      {% endif %}
+
+
+</body>
+</html>

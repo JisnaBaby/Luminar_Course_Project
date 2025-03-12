@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'course/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'course/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'course/assets/css/main.css' %}" rel="stylesheet">
+<style>
+    .hover-effect {
+
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    .hover-effect:hover {
+        text-decoration: underline;
+        color: blue;
+    }
+     /* Popup Styles */
+    #formPopup {
+        display: none;
+        position: fixed;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        width: 1000px;
+        max-height:90vh;
+        text-align: center;
+        z-index: 1001;
+        overflow-y: auto;
+    }
+
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .close-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    .close-btn:hover {
+        background: darkred;
+    }
+</style>
+
+</style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Bullying</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'profile_page' %}" class="">Home<br></a></li>
+<!--          <li><a href="about.html">About</a></li>-->
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+<!--      <a class="btn-getstarted" href="courses.html">Courses</a>-->
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="{% static 'course/img/Bull3.jpeg' %}" alt="" data-aos="fade-in">
+
+      <div class="container">
+        <h2 data-aos="fade-up" data-aos-delay="100">Cyber Bulling<br>Online Bulling</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Think before you type. Your words can either heal or destroy</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+<!--          <a href="courses.html" class="btn-get-started">Get Started</a>-->
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+<section style="padding: 20px; margin: 20px;">
+    <h2>Cyberbullying</h2>
+    <p>Cyberbullying is the use of technology, such as the internet and social media, to harass, intimidate, or harm someone. This type of bullying can take many forms, including sending mean or threatening messages, posting embarrassing photos or videos, or creating fake profiles to impersonate someone. Cyberbullying can be especially harmful because it can be done anonymously and can reach a wide audience quickly.</p>
+    <p>Cyberbullying includes sending, posting, or sharing false, negative, harmful, or mean content about someone else. It may include sharing personal or private information about someone else, causing embarrassment or humiliation. Sometimes, it crosses the line into unlawful or criminal behavior.</p>
+
+    <h3>Common Places Where Cyberbullying Occurs</h3>
+    <ul>
+        <li>Social Media platforms like Facebook, Instagram, Snapchat, and TikTok.</li>
+        <li>Text messaging and messaging apps on mobile or tablet devices.</li>
+        <li>Instant or direct messaging, and online chat over the internet.</li>
+        <li>Online forums, chat rooms, and message boards, such as Reddit.</li>
+        <li>Online gaming communities.</li>
+        <li>Emails.</li>
+    </ul>
+
+    <p>With the prevalence of social media and digital forums, content shared by individuals can be viewed by strangers and acquaintances. This creates a permanent public record of their views, activities, and behavior, forming an online reputation accessible to employers, educational institutes, clubs, and others.</p>
+
+    <p>To hide their identity, bullies often use fake profiles or anonymous accounts, making it difficult for law enforcement to trace and hold them accountable.</p>
+
+    <h3>Preventing and Addressing Cyberbullying</h3>
+    <p>Parents and educators can take steps to prevent and address cyberbullying. One of the most important is educating children and young adults about the dangers of cyberbullying and how to recognize it. Monitoring online activity and encouraging open communication can help intervene early before situations escalate.</p>
+    <p>Schools and law enforcement should develop policies and protocols for dealing with cyberbullying, including reporting systems and support for victims.</p>
+
+    <h3>Cyberbullying Course Overview</h3>
+    <h4>Chapter 1: Introduction to Cyberbullying</h4>
+    <ul>
+        <li class="hover-effect" onclick="showForm('Cyberbullying is a form of online harassment where individuals use digital platforms such as social media, messaging apps, and online forums to intimidate, embarrass, or threaten others. Unlike traditional bullying, cyberbullying is not limited by physical presence and can happen anytime, anywhere. This makes it more pervasive and difficult to escape. With the rise of internet usage, cyberbullying has become a growing concern, affecting people of all ages, especially teenagers and young adults.\n One of the biggest dangers of cyberbullying is that it allows perpetrators to remain anonymous, making it harder to identify and stop them. The content shared online, such as harmful messages, edited images, or private information, can spread rapidly and remain accessible indefinitely. Victims of cyberbullying often experience severe emotional distress, including anxiety, depression, and, in extreme cases, suicidal thoughts.\n It is essential to educate individuals about cyberbullying, its impact, and ways to handle it. Raising awareness helps people recognize harmful behaviors and take preventive measures. Schools, workplaces, and online communities must establish strict policies to ensure digital safety and protect individuals from online harassment.')">Section 1: Introduction</li>
+        <li class="hover-effect" onclick="showForm('The course is designed to provide a comprehensive understanding of the various aspects of cyberbullying, including its definition, forms, causes, and consequences. The course will also cover strategies and best practices for managing and preventing cyberbullying, as well as providing resources for those affected by it. By the end of the course, participants should have a thorough understanding of the issue of cyberbullying and be equipped with the knowledge and skills necessary to effectively manage and prevent it. \n\n The details of the Modules are as given below: \n \n - Introduction to Cyberbullying \n - Forms of Cyberbullying \n - Causes of Cyberbullying \n - Impacts of Cyberbullying \n - Prevention and reporting of Cyberbullying \n \n The course will also delve into the psychological and sociological aspects of cyberbullying. It will also explore why individuals engage in cyberbullying, the motivations behind it, and the factors that contribute to its prevalence. By understanding these underlying dynamics, individuals can better understand the behavior and find ways to prevent it from occurring. \n\n Ultimately, this course on cyberbullying will provide valuable information and skills to help individuals stay safe and prevent harm online. Whether you are a parent, teacher, or student, this course can help you understand the dangers of cyberbullying and take action to protect yourself and others.')">Section 2: About the Course</li>
+        <li class="hover-effect" onclick="showForm('The course has been structured to increase awareness among readers about cyberbullying, its impacts, and how it affects the physical and mental state of individuals involved. It also explores how a positive environment can be fostered in classrooms, workplaces, and schools, and various strategies to prevent and manage cyberbullying.')">Section 3: Brief Objective</li>
+
+    </ul>
+
+   <h4>Chapter 2: Forms of Cyberbullying</h4>
+<ul>
+    <li class="hover-effect" onclick="showForm('Cyberstalking involves continuous monitoring and harassment of an individual online, often through messages, emails, or tracking their online activity. This form of cyberbullying can lead to fear and distress, as victims feel constantly watched and threatened. It may escalate into real-world stalking or physical harm.\n Trickery occurs when a cyberbully gains the trust of a victim, only to deceive them by sharing their private conversations or personal information with others. This type of cyberbullying often leads to humiliation and social embarrassment. Many victims experience a loss of trust in people, affecting their mental well-being.\n Trolling involves deliberately provoking or upsetting someone by posting offensive, rude, or inflammatory comments online. Trolls seek to create conflict, making individuals feel attacked and distressed. This form of bullying is common on social media platforms, forums, and gaming communities.')">Section 1: Cyberstalking, Trickery, Trolling</li>
+    <li class="hover-effect" onclick="showForm('Persistent cyberbullying refers to repeated and continuous online harassment over a prolonged period. Unlike a one-time incident, persistent cyberbullying can cause ongoing emotional stress and anxiety. The victim may feel powerless as they are constantly targeted with negative messages, threats, or defamation.\n This form of cyberbullying can be particularly damaging when bullies use multiple online platforms to harass the victim. It can occur through social media, emails, messaging apps, or even gaming networks. Victims often struggle to escape the harassment, as the bully may create new accounts or involve others in the abuse.\n Due to the relentless nature of persistent cyberbullying, victims may suffer from low self-esteem, depression, and fear of using digital platforms. Seeking support from authorities, school counselors, or online safety organizations is crucial in handling such situations.')">Section 2: Persistent Cyberbullying</li>
+    <li class="hover-effect" onclick="showForm('One of the most damaging aspects of cyberbullying is its permanence. Once harmful content is posted online, it can be difficult or impossible to remove. Screenshots, re-posts, and downloads ensure that even deleted content can resurface at any time, causing lasting harm to a person\'s reputation.Permanent cyberbullying can have long-term effects on victims, affecting their social relationships, education, and career prospects. Employers and universities often review applicants\' digital footprints, meaning past incidents of cyberbullying can impact their opportunities.')">Section 3: Permanent Cyberbullying</li>
+    <li class="hover-effect" onclick="showForm('Unlike face-to-face bullying, cyberbullying is often subtle and difficult to detect. Victims may not always report the abuse due to fear, embarrassment, or concern that the situation may worsen. This makes it challenging for parents, teachers, and friends to intervene.\n Signs of cyberbullying include withdrawal from social activities, reluctance to use digital devices, and emotional distress. Awareness and proactive conversations about online safety can help in recognizing and addressing cyberbullying before it escalates.')">Section 4: Hard to Notice</li>
+</ul>
+
+<h4>Chapter 3: Causes of Cyberbullying</h4>
+<ul>
+    <li class="hover-effect" onclick="showForm('Cyberbullying arises from various social, psychological, and technological factors. Anonymity and lack of accountability online encourage people to behave in ways they would not in real life. The absence of face-to-face interactions can make perpetrators feel detached from the consequences of their actions.\n Additionally, societal pressure, competition, and peer influence can contribute to cyberbullying. Individuals may engage in online harassment to gain social status, entertain others, or exert power over someone they perceive as weaker. Understanding these causes can help in developing effective prevention strategies.')">Section 1: Overview of Causes</li>
+    <li class="hover-effect" onclick="showForm('Many cyberbullies lack empathy and do not fully comprehend the emotional impact of their actions. The absence of immediate consequences online makes it easier for them to act without considering the harm they are causing. Some bullies may also struggle with self-esteem issues and use cyberbullying as a way to boost their confidence by belittling others.\n Additionally, internet addiction plays a significant role. Excessive online activity can desensitize individuals to the emotions of others, making them more likely to engage in harmful behavior. The constant need for validation and attention can lead some users to cyberbully for amusement or social approval.')">Section 2: Lack of Empathy, Self-Loathing, Addiction</li>
+    <li class="hover-effect" onclick="showForm('Young or inexperienced internet users may engage in cyberbullying without fully understanding its consequences. Many individuals mistakenly believe that their actions online are harmless jokes, not realizing the long-term emotional and psychological damage they cause.\n Educating internet users about responsible digital behavior, privacy settings, and online ethics can help reduce unintentional cyberbullying. Schools and parents should teach children about appropriate online interactions from an early age.')">Section 3: Lack of Internet Experience</li>
+    <li class="hover-effect" onclick="showForm('When parents or guardians do not monitor their child\'s internet usage, the chances of cyberbullying increase. Without proper guidance, children and teenagers may develop negative online behaviors and engage in cyberbullying without fear of consequences.\n Parental involvement, open discussions about online safety, and the use of digital monitoring tools can help reduce cyberbullying. Encouraging a safe and respectful online environment is essential for preventing harmful behaviors.')">Section 4: Lack of Parental Monitoring</li>
+</ul>
+
+<h4>Chapter 4: Impacts of Cyberbullying</h4>
+<ul>
+    <li class="hover-effect" onclick="showForm('Cyberbullying has a range of negative consequences that can affect individuals socially, emotionally, and psychologically. Victims often experience self-doubt, embarrassment, and social withdrawal. The fear of being ridiculed online can lead to a loss of confidence, making it difficult for victims to engage in social interactions, whether online or in person. \n Cyberbullying also affects academic and professional life. Students facing cyberbullying may lose focus on their studies, leading to declining grades, while employees might struggle with workplace performance due to emotional distress. The long-term impact of cyberbullying can lead to severe isolation and hesitation in forming new relationships.')">Section 1: Various Impacts</li>
+
+    <li class="hover-effect" onclick="showForm('Cyberbullying has significant social implications, not just for the victims but also for the perpetrators and bystanders. Victims of cyberbullying often struggle with social anxiety and find it challenging to maintain friendships or relationships due to fear of judgment or further attacks. \n\n On a broader scale, cyberbullying fosters a toxic online culture where negativity spreads rapidly. The normalization of harmful online behavior can lead to an increase in cyber aggression, creating an unsafe digital space for everyone. Addressing cyberbullying requires collective social responsibility to promote kindness and accountability.')">Section 2: Social Impact</li>
+
+    <li class="hover-effect" onclick="showForm('Cyberbullying can severely affect mental health, leading to anxiety, depression, and even suicidal thoughts. Victims often feel overwhelmed by the constant negative attention and struggle with feelings of worthlessness and despair. The anonymity of online platforms can make bullying more relentless, leaving individuals feeling powerless and trapped. \n The psychological toll of cyberbullying can extend into adulthood, leading to long-term emotional trauma. Victims may develop trust issues, have difficulty forming relationships, and experience heightened stress in social situations. Seeking support from family, friends, and professional counselors is crucial in overcoming these mental health challenges.')">Section 3: Impact on Mental Health</li>
+
+    <li class="hover-effect" onclick="showForm('Beyond mental and emotional distress, cyberbullying can also lead to physical health issues. Victims of cyberbullying often experience sleep disturbances, headaches, and changes in appetite due to prolonged stress and anxiety. The continuous psychological strain can also weaken the immune system, making individuals more susceptible to illness. \n In severe cases, victims may engage in self-harm or substance abuse as a way to cope with emotional pain. The impact of cyberbullying on physical health highlights the importance of early intervention and the need for supportive environments where victims can seek help and recovery.')">Section 4: Impact on Physical Health</li>
+</ul>
+
+<h4>Chapter 5: Preventing and Reporting Cyberbullying</h4>
+<ul>
+    <li class="hover-effect" onclick="showForm('Preventing cyberbullying requires a combination of education, awareness, and proactive measures. Individuals should be encouraged to practice responsible online behavior, such as thinking before posting, respecting others, and understanding the consequences of harmful actions. Schools and workplaces can play a crucial role by implementing anti-cyberbullying policies and promoting digital literacy. \n\n Additionally, using privacy settings, blocking negative individuals, and avoiding engaging with cyberbullies can help minimize exposure to harmful interactions. Parents and educators should have open conversations with young individuals about online safety and how to respond to cyberbullying incidents effectively.')">Section 1: Preventive Measures</li>
+
+    <li class="hover-effect" onclick="showForm('Reporting cyberbullying is essential in addressing and stopping harmful online behavior. Many social media platforms and websites provide tools to report abusive content and block offenders. Victims should document evidence, such as screenshots of messages or comments, before reporting the incident to authorities or online platforms. \n\n In cases where cyberbullying involves threats, harassment, or criminal activity, it should be reported to law enforcement agencies. Schools and workplaces should also have clear guidelines for reporting cyberbullying incidents and providing support to affected individuals. Raising awareness about reporting options can empower victims to take action and seek justice.')">Section 2: Reporting Cyberbullying Incidents</li>
+</ul>
+
+</section>
+
+<!-- Form Popup -->
+<!-- Background Overlay -->
+<div id="overlay" onclick="closeForm()"></div>
+
+<!-- Form Popup -->
+<div id="formPopup">
+    <h3>Section Details</h3>
+    <p id="formDescription"></p>
+    <button class="close-btn" onclick="closeForm()">Close</button>
+</div>
+
+      <a href="{% url 'quiz_register' %}" class="btn btn-success" style="justify-content: center; align-items: center;display: flex;width:300px;margin-left:500px;">Take a Quiz</a>
+
+
+  </main>
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'course/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'course/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'course/assets/js/main.js' %}"></script>
+<script>
+function showForm(description) {
+    document.getElementById('formDescription').innerText = description;
+    document.getElementById('formPopup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closeForm() {
+    document.getElementById('formPopup').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+</script>
+
+
+
+
+</body>
+
+</html>
