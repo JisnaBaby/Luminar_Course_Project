@@ -16,6 +16,7 @@ urlpatterns = [
     path('create_post/', views.create_post, name='create_post'),
     path('like_post/<int:post_id>/', views.like_post, name='like_post'),
     path('add_comment/<int:post_id>/', views.add_comment, name='add_comment'),
+    path('add_audio_comment/<int:post_id>/', views.add_audio_comment, name='add_audio_comment'),
     path('login_view/', views.login_view, name='login_view'),
     path('reg_save/', views.reg_save, name='reg_save'),
     path('complaint/', views.complaint, name='complaint'),

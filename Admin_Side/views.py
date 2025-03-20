@@ -72,3 +72,13 @@ def warned_users_page(request, count):
 
     return render(request, "Warned_Users.html", {'warned_users': warned_users, 'users_got_warning': users_got_warning})
 
+def delete_user(request, u_id):
+    user = RegisterDB.objects.filter(id=u_id).first()
+
+    if user:
+        user.delete()
+        messages.success(request, "User deleted successfully.")
+    else:
+        messages.error(request, "User not found.")
+
+    return redirect('display_user')

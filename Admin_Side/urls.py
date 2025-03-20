@@ -12,5 +12,6 @@ urlpatterns = [
     path('display_contact/',views.display_contact,name="display_contact"),
     path('warned_users_page/', views.warned_users_page, {'count': 1}, name='warned_users_page'),
     path('warned_users_page/<int:count>/',views.warned_users_page,name="warned_users_page"),
+    path('delete_user/<int:u_id>/',views.delete_user,name="delete_user"),
 
 ]

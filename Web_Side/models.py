@@ -46,7 +46,8 @@ class Like(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(RegisterDB, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.TextField(null=True,blank=True)
+    audio= models.FileField(upload_to='comment_audios', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class ComplaintdB(models.Model):

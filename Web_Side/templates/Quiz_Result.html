@@ -2,27 +2,209 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Result</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        .result-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .congratulation-banner {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .failure-banner {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h3 {
+            color: #2e75b6;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .score-section {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .percentage {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .pass {
+            color: #28a745;
+        }
+
+        .fail {
+            color: #dc3545;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #2e75b6;
+            color: white;
+            width: 200px;
+        }
+
+        .btn-primary:hover {
+            background-color: #245a8c;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            width: 200px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-home {
+            background-color: transparent;
+            border: 1px solid #2e75b6;
+            color: #2e75b6;
+            margin-top: 10px;
+        }
+
+        .btn-home:hover {
+            background-color: #e6f0fa;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .result-container {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div style="text-align:center">
-    <h3>Thank you, {{ participant.name }}!</h3>
-<p>Your Quiz Score: {{ score }}</p>
-<p>Percentage: {{ percentage|floatformat:2 }}%</p>
+<div class="result-container">
+    {% if locked %}
+        <div class="failure-banner">
+            <i class="fas fa-lock icon" style="margin-right: 10px;"></i>
+            <span>You have failed the quiz 3 times. You can no longer retake the test.</span>
+        </div>
+    {% else %}
+        {% if percentage > 40 %}
+            <div class="congratulation-banner">
+                <i class="fas fa-trophy icon" style="color: gold; margin-right: 10px;"></i>
+                <span>Congratulations! You have passed the test.</span>
+            </div>
+        {% else %}
+            <div class="failure-banner">
+                <i class="fas fa-exclamation-circle icon" style="margin-right: 10px;"></i>
+                <span>Unfortunately, you did not pass. You have {{ attempts_left }} attempt(s) remaining.</span>
+            </div>
+        {% endif %}
+    {% endif %}
 
-{% if percentage > 40 %}
-    <p>Congratulations! You have passed the test.</p>
-    <a href="{% url 'generate_certificate' participant.id %}">
-        <button>Download Certificate</button>
-    </a>
-{% else %}
-    <p>Unfortunately, you did not pass. Please try again.</p>
-    <a href="{% url 'quiz_form' participant.id %}">
-        <button>Retake Test</button>
-    </a>
-{% endif %}
-    <br><a href="{% url 'profile_page' %}" class="btn btn-outline-primary">Home</a>
+    <div class="header">
+        <h3>Thank you, {{ participant.name }}!</h3>
+        <p>Your quiz results are ready</p>
+    </div>
+
+    <div class="score-section">
+        <p class="score">Your Quiz Score: {{ score }}</p>
+        <p class="percentage {% if percentage > 40 %}pass{% else %}fail{% endif %}">
+            {{ percentage|floatformat:2 }}%
+        </p>
+    </div>
+
+    {% if not locked %}
+        <div class="actions">
+            <a href="{% url 'quiz_form' participant.id %}" class="btn btn-primary">Retake Quiz</a>
+        </div>
+    {% else %}
+        <div class="actions">
+            <button class="btn btn-secondary" disabled>Quiz Locked</button>
+        </div>
+    {% endif %}
+     <a href="{% url 'profile_page' %}" class="btn btn-home">
+            <i class="fas fa-home icon"></i>Return Home
+        </a>
 </div>
 
 </body>

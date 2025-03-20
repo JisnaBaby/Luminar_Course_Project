@@ -24,6 +24,52 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'course/assets/css/main.css' %}" rel="stylesheet">
+<style>
+    /* Centering the submit button */
+    .submit-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    /* Timer Styling */
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  </style>
+<script>
+    // Timer function (15 minutes countdown)
+    let timeLeft = 15 * 60; // 15 minutes in seconds
+
+    function startTimer() {
+      const timerDisplay = document.getElementById("timer");
+      const quizForm = document.getElementById("quizForm");
+
+      function updateTimer() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timerDisplay.innerText = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(timerInterval);
+          quizForm.submit(); // Auto-submit form
+        }
+      }
+
+      updateTimer();
+      let timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    window.onload = startTimer;
+  </script>
 <body>
 <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -50,6 +96,7 @@
   </header>
 <section style="padding: 20px; margin: 20px;">
     <h4 style="text-align:center;color:red;font-weight:bold;">Cyberbullying Awareness Quiz</h4>
+    <div id="timer">15:00</div>
     <form method="post" action="{% url 'submit_quiz' participant.id %}">
     {% csrf_token %}
 
@@ -234,7 +281,7 @@
         <input type="radio" name="q30" value="D"> D) Ignoring negative comments and letting cyberbullying continue<br>
 
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-primary submit-btn" value="Submit">
 
     </form>
 

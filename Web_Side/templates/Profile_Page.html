@@ -108,7 +108,7 @@
 <!-- Profile Edit Popup -->
 <div id="edit-profile-popup" class="popup">
     <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
+        <span class="close" onclick="closePopup()" style="margin-top:-20px;">&times;</span>
         <form method="POST">
             {% csrf_token %}
             <label>Bio:</label>
@@ -180,32 +180,59 @@
         {% endif %}
 
         <div class="d-flex justify-content-between">
-            <button class="btn btn-light flex-grow-1" onclick="likePost({{ post.id }})">👍
-                <span id="like-count-{{ post.id }}">{{ post.like_set.count }}</span> Like
-            </button>
-            <button class="btn btn-light flex-grow-1" onclick="toggleCommentBox({{ post.id }})">💬 Comment</button>
+          <button id="like-btn-{{ post.id }}" class="btn flex-grow-1" onclick="likePost({{ post.id }})">
+    <span id="thumbs-up-{{ post.id }}">
+        {% if post.user_liked %} 👍 {% endif %}
+    </span>
+    <span id="like-count-{{ post.id }}">{{ post.like_set.count }}</span> Like
+</button>
+ <button class="btn btn-light flex-grow-1" onclick="toggleCommentBox({{ post.id }}, 'text')">💬
+        Comment (<span id="comment-count-{{ post.id }}">{{ post.comment_set.count }}</span>)
+    </button>
 
-            {% if post.image %}
-                <button class="btn btn-light flex-grow-1" onclick="downloadPost('{{ post.image.url }}')">💾 Save</button>
-            {% endif %}
+    <button class="btn btn-light flex-grow-1" onclick="toggleCommentBox({{ post.id }}, 'audio')">🎤
+        Audio
+    </button>
 
-            {% if post.video %}
-                <button class="btn btn-light flex-grow-1" onclick="downloadPost('{{ post.video.url }}')">💾 Save</button>
-            {% endif %}
+    {% if post.image %}
+        <button class="btn btn-light flex-grow-1" onclick="downloadPost('{{ post.image.url }}')">💾 Save</button>
+    {% endif %}
+
+    {% if post.video %}
+        <button class="btn btn-light flex-grow-1" onclick="downloadPost('{{ post.video.url }}')">💾 Save</button>
+    {% endif %}
+</div>
+
+<!-- Comment Section -->
+<div id="comments">
+    <!-- Text Comment Section -->
+    <div id="text-comment-section-{{ post.id }}" class="comment-section" style="display: none;">
+        <textarea id="comment-input-{{ post.id }}" placeholder="Write a comment..." class="form-control"></textarea>
+        <button class="btn btn-primary mt-2" onclick="addComment({{ post.id }}, 'text')">Post Comment</button>
+    </div>
+    
+    <!-- Audio Comment Section -->
+    <div id="audio-comment-section-{{ post.id }}" class="comment-section" style="display: none;">
+        <div class="d-flex flex-column align-items-center mt-2">
+            <button id="start-recording-{{ post.id }}" class="btn btn-danger mb-2" onclick="startRecording({{ post.id }})">Start Recording</button>
+            <button id="stop-recording-{{ post.id }}" class="btn btn-secondary mb-2" style="display: none;" onclick="stopRecording({{ post.id }})">Stop Recording</button>
+            <div id="recording-status-{{ post.id }}" class="text-center mb-2"></div>
+            <audio id="audio-preview-{{ post.id }}" controls style="display: none;"></audio>
+            <button id="send-audio-{{ post.id }}" class="btn btn-primary mt-2" style="display: none;" onclick="addComment({{ post.id }}, 'audio')">Post Audio Comment</button>
         </div>
+    </div>
 
-        <!-- Comment Section -->
-        <div id="comments">
-            <div id="comment-section-{{ post.id }}" class="comment-section" style="display: none;">
-                <textarea id="comment-input-{{ post.id }}" placeholder="Write a comment..." class="form-control"></textarea>
-                <button class="btn btn-primary mt-2" onclick="addComment({{ post.id }})">Post Comment</button>
-                <div id="comments-list-{{ post.id }}">
-                    {% for comment in post.comment_set.all %}
-                        <p><strong>{{ comment.user.full_name }}:</strong> {{ comment.text }}</p>
-                    {% endfor %}
-                </div>
+    <!-- Combined Comments List -->
+    <div id="comments-list-{{ post.id }}" class="comments-list mt-2" style="display: none;">
+        {% for comment in post.comment_set.all %}
+            <div class="comment mb-2">
+                {% if comment.text %}
+                    <p><strong>{{ comment.user.full_name }}:</strong> {{ comment.text }}</p>
+                {% elif comment.audio %}
+                    <p><strong>{{ comment.user.full_name }}:</strong> <br><audio controls src="{{ comment.audio.url }}"></audio></p>
+                {% endif %}
             </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endfor %}
@@ -224,51 +251,184 @@ function likePost(postId) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById(`like-count-${postId}`).innerText = data.like_count;
-    });
-}
+        let thumbsUp = document.getElementById(`thumbs-up-${postId}`);
+        let likeCount = document.getElementById(`like-count-${postId}`);
 
-function toggleCommentBox(postId) {
-    let commentBox = document.getElementById(`comment-section-${postId}`);
-    commentBox.style.display = commentBox.style.display === "none" ? "block" : "none";
-}
+        likeCount.innerText = data.like_count;
 
-function getCSRFToken() {
-    let csrfToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
-    return csrfToken ? csrfToken.split('=')[1] : '';
-}
-
-function addComment(postId) {
-    let commentInput = document.getElementById(`comment-input-${postId}`);
-    let commentText = commentInput.value.trim();
-
-    if (commentText === "") return;
-
-    fetch(`/add_comment/${postId}/`, {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": getCSRFToken(), // Get CSRF token from cookies
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ comment: commentText })
-    })
-    .then(response => response.json())
-    .then(data => {
-        let commentList = document.getElementById(`comments-list-${postId}`);
-        let commentElement = document.createElement("p");
-
-        commentElement.innerHTML = `<strong>${data.comment_user}:</strong> ${data.comment_text}`;
-
-        // Apply red color if it's a cyberbullying warning
-        if (data.comment_text.includes("Cyberbullying is a criminal offense")) {
-            commentElement.style.color = "red";
-            commentElement.style.fontWeight = "bold";
+        if (data.liked) {
+            thumbsUp.innerText = "👍";
+        } else {
+            thumbsUp.innerText = "";
         }
-
-        commentList.appendChild(commentElement);
-        commentInput.value = ""; // Clear input after successful comment
     })
-    .catch(error => console.error("Fetch Error:", error));
+    .catch(error => console.error("Error:", error));
+}
+
+// Ensure likes persist after refresh
+
+// Add this to your existing <script> section
+    let mediaRecorder;
+let audioChunks = [];
+let audioBlob;
+
+function toggleCommentBox(postId, type) {
+    // Get all comment sections for this post
+    let textCommentSection = document.getElementById(`text-comment-section-${postId}`);
+    let audioCommentSection = document.getElementById(`audio-comment-section-${postId}`);
+    let commentsList = document.getElementById(`comments-list-${postId}`);
+    
+    // Hide all comment sections first
+    textCommentSection.style.display = "none";
+    audioCommentSection.style.display = "none";
+    
+    // Show the comments list and the selected comment section
+    commentsList.style.display = "block";
+    
+    if (type === 'text') {
+        textCommentSection.style.display = "block";
+    } else if (type === 'audio') {
+        audioCommentSection.style.display = "block";
+    }
+}
+
+function startRecording(postId) {
+    audioChunks = [];
+    
+    document.getElementById(`recording-status-${postId}`).textContent = "Recording...";
+    document.getElementById(`start-recording-${postId}`).style.display = "none";
+    document.getElementById(`stop-recording-${postId}`).style.display = "block";
+    document.getElementById(`audio-preview-${postId}`).style.display = "none";
+    document.getElementById(`send-audio-${postId}`).style.display = "none";
+    
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = e => {
+                audioChunks.push(e.data);
+            };
+            
+            mediaRecorder.onstop = () => {
+                audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audioPreview = document.getElementById(`audio-preview-${postId}`);
+                audioPreview.src = audioUrl;
+                audioPreview.style.display = "block";
+                document.getElementById(`send-audio-${postId}`).style.display = "block";
+                document.getElementById(`recording-status-${postId}`).textContent = "Recording complete. Preview your audio before sending.";
+            };
+            
+            mediaRecorder.start();
+        })
+        .catch(error => {
+            console.error("Error accessing microphone:", error);
+            document.getElementById(`recording-status-${postId}`).textContent = "Error accessing microphone. Please check permissions.";
+            document.getElementById(`start-recording-${postId}`).style.display = "block";
+            document.getElementById(`stop-recording-${postId}`).style.display = "none";
+        });
+}
+
+function stopRecording(postId) {
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+    }
+    
+    document.getElementById(`start-recording-${postId}`).style.display = "block";
+    document.getElementById(`stop-recording-${postId}`).style.display = "none";
+}
+
+function addComment(postId, type) {
+    if (type === 'text') {
+        let commentInput = document.getElementById(`comment-input-${postId}`);
+        let commentText = commentInput.value.trim();
+        
+        if (commentText === "") return;
+        
+        fetch(`/add_comment/${postId}/`, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCSRFToken(),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ comment: commentText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            addCommentToDOM(postId, data);
+            commentInput.value = ""; // Clear input after successful comment
+        })
+        .catch(error => console.error("Fetch Error:", error));
+    } 
+    else if (type === 'audio' && audioBlob) {
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'audio_comment.wav');
+        
+        fetch(`/add_audio_comment/${postId}/`, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCSRFToken(),
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            addCommentToDOM(postId, data);
+            
+            // Reset the audio recording UI
+            document.getElementById(`audio-preview-${postId}`).style.display = "none";
+            document.getElementById(`send-audio-${postId}`).style.display = "none";
+            document.getElementById(`recording-status-${postId}`).textContent = "";
+            audioBlob = null;
+        })
+        .catch(error => {
+            console.error("Error uploading audio comment:", error);
+            document.getElementById(`recording-status-${postId}`).textContent = "Error uploading audio comment.";
+        });
+    }
+}
+
+function addCommentToDOM(postId, data) {
+    let commentList = document.getElementById(`comments-list-${postId}`);
+    let commentElement = document.createElement("div");
+    commentElement.className = "comment mb-2";
+    
+    // If cyberbullying detected, display warning text
+    if (data.is_cyberbullying || (data.comment_text && data.comment_text.includes("Cyberbullying is a criminal offense"))) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> ${data.comment_text}</p>`;
+        commentElement.style.color = "red";
+        commentElement.style.fontWeight = "bold";
+    }
+    // Otherwise, if it's an audio comment
+    else if (data.audio_url) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> <audio controls src="${data.audio_url}"></audio></p>`;
+    }
+    // Regular text comment
+    else if (data.comment_text) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> ${data.comment_text}</p>`;
+    }
+    
+    commentList.insertBefore(commentElement, commentList.firstChild);
+}
+
+function toggleCommentBox(postId, type) {
+    // Get all comment sections for this post
+    let textCommentSection = document.getElementById(`text-comment-section-${postId}`);
+    let audioCommentSection = document.getElementById(`audio-comment-section-${postId}`);
+    let commentsList = document.getElementById(`comments-list-${postId}`);
+    
+    // Hide all comment sections first
+    textCommentSection.style.display = "none";
+    audioCommentSection.style.display = "none";
+    
+    // Show the comments list and the selected comment section
+    commentsList.style.display = "block";
+    
+    if (type === 'text') {
+        textCommentSection.style.display = "block";
+    } else if (type === 'audio') {
+        audioCommentSection.style.display = "block";
+    }
 }
 
 function downloadPost(imageUrl) {
@@ -283,6 +443,11 @@ function downloadPost(imageUrl) {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+<script>
+    function getCSRFToken() {
+    return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+}
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // Function to upload profile image via AJAX
@@ -336,6 +501,66 @@ function scrollToSection(sectionId) {
             top: section.offsetTop - 50, // Adjust for navbar if needed
             behavior: 'smooth'
         });
+    }
+}
+</script>
+<script>
+    function addCommentToDOM(postId, data) {
+    let commentList = document.getElementById(`comments-list-${postId}`);
+    let commentCount = document.getElementById(`comment-count-${postId}`);
+
+    let commentElement = document.createElement("div");
+    commentElement.className = "comment mb-2";
+
+    // Cyberbullying warning message
+    if (data.is_cyberbullying) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> ${data.comment_text}</p>`;
+        commentElement.style.color = "red";
+        commentElement.style.fontWeight = "bold";
+    }
+    // Audio comment
+    else if (data.audio_url) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> <audio controls src="${data.audio_url}"></audio></p>`;
+    }
+    // Regular text comment
+    else if (data.comment_text) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> ${data.comment_text}</p>`;
+    }
+
+    commentList.insertBefore(commentElement, commentList.firstChild);
+
+    // **Update the comment count dynamically**
+    if (data.c_count !== undefined) {
+        commentCount.innerText = data.c_count;
+    }
+}
+function addCommentToDOM(postId, data) {
+    let commentList = document.getElementById(`comments-list-${postId}`);
+    let commentCount = document.getElementById(`comment-count-${postId}`);
+
+    let commentElement = document.createElement("div");
+    commentElement.className = "comment mb-2";
+
+    // Cyberbullying warning message
+    if (data.is_cyberbullying) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> ${data.comment_text}</p>`;
+        commentElement.style.color = "red";
+        commentElement.style.fontWeight = "bold";
+    }
+    // Audio comment
+    else if (data.audio_url) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> <audio controls src="${data.audio_url}"></audio></p>`;
+    }
+    // Regular text comment
+    else if (data.comment_text) {
+        commentElement.innerHTML = `<p><strong>${data.comment_user}:</strong> ${data.comment_text}</p>`;
+    }
+
+    commentList.insertBefore(commentElement, commentList.firstChild);
+
+    // **Update the comment count dynamically**
+    if (data.c_count !== undefined) {
+        commentCount.innerText = data.c_count;
     }
 }
 </script>

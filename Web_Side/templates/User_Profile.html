@@ -82,8 +82,18 @@
                         </video>
                     {% endif %}
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-light flex-grow-1" onclick="likePost({{ post.id }})">👍 <span id="like-count-{{ post.id }}">{{ post.like_set.count }}</span> Like</button>
-                        <button class="btn btn-light flex-grow-1" onclick="toggleCommentBox({{ post.id }})">💬 Comment</button>
+                        <button id="like-btn-{{ post.id }}"
+        class="btn flex-grow-1"
+        onclick="likePost({{ post.id }})">
+    <span id="thumbs-up-{{ post.id }}"
+          class="{% if request.user in post.likes.all %}liked{% else %}not-liked{% endif %}">
+        👍
+    </span>
+    <span id="like-count-{{ post.id }}">{{ post.like_set.count }}</span> Like
+</button>
+                        <button class="btn btn-light flex-grow-1" onclick="toggleCommentBox({{ post.id }})">💬
+    Comment (<span id="comment-count-{{ post.id }}">{{ post.comment_set.count }}</span>)
+</button>
                         {% if post.image %}
                 <button class="btn btn-light flex-grow-1" onclick="downloadPost('{{ post.image.url }}')">💾 Save</button>
             {% endif %}
@@ -109,19 +119,33 @@
     </main>
 
     <script>
-        function likePost(postId) {
-            fetch(`/like_post/${postId}/`, {
-                method: "POST",
-                headers: {
-                    "X-CSRFToken": "{{ csrf_token }}",
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById(`like-count-${postId}`).innerText = data.like_count;
-            });
+function likePost(postId) {
+    fetch(`/like_post/${postId}/`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "Content-Type": "application/json"
         }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let thumbsUp = document.getElementById(`thumbs-up-${postId}`);
+        let likeCount = document.getElementById(`like-count-${postId}`);
+
+        // Update like count
+        likeCount.innerText = data.like_count;
+
+        // Toggle the class for thumbs-up
+        if (data.liked) {
+            thumbsUp.classList.add("liked");
+            thumbsUp.classList.remove("not-liked");
+        } else {
+            thumbsUp.classList.add("not-liked");
+            thumbsUp.classList.remove("liked");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
 
         function toggleCommentBox(postId) {
             let commentBox = document.getElementById(`comment-section-${postId}`);
